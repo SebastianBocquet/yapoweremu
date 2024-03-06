@@ -47,12 +47,17 @@ class Emulator:
         assert kind in ['nonu', 'tot'], "kind must be either 'nonu' or 'tot'"
         self.validate_params(param_dict)
         # Create torch tensor
-        x_np = np.array([param_dict[name] for name in self.param_ranges.d]).T
+        x_np = np.array([param_dict[name] for name in self.param_names_nn]).T
         x = torch.tensor(x_np).float()
         # Evaluate model
         with torch.no_grad():
             pred = self.emu[kind]['model'](x).numpy() * self.emu[kind]['stds']
         pred+= self.emu[kind]['means']
+        # Correct for amplitude and slope
+        offset = (np.atleast_1d(param_dict['ln1e10As']).T - np.log(10.)
+                  + (np.atleast_1d(param_dict['ns']).T-1.)
+                  * np.log(np.full(pred.shape, self.k).T/.05*np.atleast_1d(param_dict['h']).T)).T
+        pred+= offset
         return pred
 
     def validate_params(self, param_dict):
