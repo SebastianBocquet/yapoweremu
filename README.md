@@ -21,14 +21,14 @@ import poweremu
 emu = poweremu.Emulator()
 k = emu.k
 
-params = {'Omegam': .3, 'Omegab': .06, 'mnu': .1, 'h': .7, 'w': -1., 'z': 0.}
+params = {'Omegam': .3, 'Omegab': .06, 'mnu': .1, 'h': .7, 'w': -1., 'z': 0., 'ln1e10As': 3., 'ns': .97}
 pk_tot = emu.predict(param_dict=params, kind='tot')
 pk_nonu = emu.predict(param_dict=params, kind='nonu')
 ```
 The output power spectra will have the same shape as `emu.k`.
 You can also provide multiple sets of parameters, such as
 ```
-params = params = {'Omegam': [.3, .4], 'Omegab': [.06, .05], 'mnu': [0., .1], 'h': [.7, .8], 'w': [-1., -1.1], 'z': [0., 1.]}
+params = params = {'Omegam': [.3, .4], 'Omegab': [.06, .05], 'mnu': [0., .1], 'h': [.7, .8], 'w': [-1., -1.1], 'z': [0., 1.], 'ln1e10As': [3., 3.3], 'ns': [.96, 1.]}
 pk_nonu = emu.predict(param_dict=params, kind='nonu')
 ```
 In this case, the output power spectrum has shape (2, len(emu.k)).
