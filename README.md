@@ -6,7 +6,7 @@ The emulator can provide the power spectrum for all matter (`tot`, useful for co
 
 The emulator is based on a neural network implemented using pytorch, and is trained on power spectra computed using CAMB.
 
-Why do we need yet another emulator for the linear power spectrum? I found that no existing code provides the `nonu` power spectrum over a sufficiently wide range of parameters.
+(Why) Do we need yet another emulator for the linear power spectrum? I found that no existing code provides the `nonu` power spectrum over a sufficiently wide range of parameters.
 
 Installation
 ------------
@@ -15,8 +15,8 @@ Installation
 
 You can easily install it with `pip install https://github.com/SebastianBocquet/yapoweremu`
 
-Useage
-------
+Tutorial
+--------
 
 ```
 import poweremu
