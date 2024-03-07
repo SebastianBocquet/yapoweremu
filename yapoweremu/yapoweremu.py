@@ -14,7 +14,7 @@ class Emulator:
         f_name = pkg_resources.resource_filename(__name__, 'param_ranges.txt')
         self.param_ranges = np.genfromtxt(f_name, names=True)
         if not live_dangerously:
-            self.param_ranges['Omegam'][0] = 0.12
+            self.param_ranges['Omegam'][0] = 0.14
         self.param_names_nn = self.param_ranges.dtype.names
         self.param_names = ['Omegam', 'Omegab', 'mnu', 'h', 'w', 'z', 'ln1e10As', 'ns']
         self.k = np.loadtxt(pkg_resources.resource_filename(__name__, 'k.txt'))
@@ -51,8 +51,8 @@ class Emulator:
         x = torch.tensor(x_np).float()
         # Evaluate model
         with torch.no_grad():
-            pred = self.emu[kind]['model'](x).numpy() * self.emu[kind]['stds']
-        pred+= self.emu[kind]['means']
+            pred = (self.emu[kind]['model'](x).numpy() * self.emu[kind]['stds']
+                    + self.emu[kind]['means'])
         # Correct for amplitude and slope
         offset = (np.atleast_1d(param_dict['ln1e10As']).T - np.log(10.)
                   + (np.atleast_1d(param_dict['ns']).T-1.)

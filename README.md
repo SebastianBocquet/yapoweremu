@@ -1,11 +1,13 @@
 # yapoweremu: yet another emulator for the linear matter power spectrum
 
-Fast and accurate predictions for the linear matter power spectrum over a wide range of cosmological parameters, including the dark energy equation of state parameter and the sum of neutrino masses.
-The emulator can provide the power spectrum for all matter (`tot`, useful for computing quantities like σ<sub>8</sub>), or the power spectrum from cold dark matter + baryons (but not neutrinos, `nonu`, useful for computing the halo mass function).
+`yapoweremu` provides fast and accurate predictions for the linear matter power spectrum over a wide range of cosmological parameters, including the dark energy equation of state parameter and the sum of neutrino masses.
+The user can choose between the power spectrum for all matter (`tot`, useful for computing quantities like σ<sub>8</sub>) and the power spectrum for cold dark matter + baryons (but not neutrinos, `nonu`, useful for computing the halo mass function).
 
 The emulator is based on a neural network implemented using pytorch, and is trained on power spectra computed using CAMB.
 
-(Why) Do we need yet another emulator for the linear power spectrum? I found that no existing code provides the `nonu` power spectrum over a sufficiently wide range of parameters.
+**(Why) Do we need yet another emulator for the linear power spectrum?** I found that no existing code provides the `nonu` power spectrum over a sufficiently wide range of parameters.
+
+**Why is this called an emulator?** The neural net is trained on power spectra computed using CAMB. `yapoweremu` thus emulates running CAMB (nota bene: the emulator does not "emulate the power spectrum", it emulates running CAMB).
 
 ## Installation
 
@@ -53,4 +55,4 @@ The normalization `ln1e10As` and slope `ns` of the power spectrum can be provide
 | ln1e10As  | -   | -   |
 | ns        | -   | -   |
 
-*Note* The neural net is actually trained for 0.1 < Omegam < 0.5. However, for combinations of Omegam<0.12 and large Omegab (around 0.07), the emulator does not perform well (because baryonic features in the power spectrum become extremely pronounced. The user can override the default `Omegam>0.12` when initializing the emulator as `emu = poweremu.Emulator(live_dangerously=True)`, this will set the lower limit to 0.1.
+**Note** The neural net is actually trained for 0.1 < Omegam < 0.5. However, for combinations of Omegam<0.12 and large Omegab (around 0.07), the emulator does not perform well (because baryonic features in the power spectrum become extremely pronounced. The user can override the default `Omegam>0.12` when initializing the emulator as `emu = poweremu.Emulator(live_dangerously=True)`, this will set the lower limit to 0.1.
