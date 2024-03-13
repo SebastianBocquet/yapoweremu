@@ -1,10 +1,9 @@
-import inspect
-import os
+try:
+    from importlib import metadata
+except ImportError:
+    import importlib_metadata as metadata
 
-version_filename = os.path.join(os.path.dirname(os.path.abspath(inspect.stack()[0][1])), 'VERSION')
-with open(version_filename, 'r') as version_file:
-    __version__ = version_file.read().strip()
-
+__version__ = metadata.version(__name__)
 __author__ = "Sebastian Bocquet"
 __email__ = "sebastian.bocquet@gmail.com"
 __license__ = "MIT"

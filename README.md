@@ -13,7 +13,7 @@ The emulator is based on a neural network implemented using pytorch, and is trai
 
 `yapoweremu` requires a pretty basic python installation with numpy and pytorch.
 
-You can easily install it with `pip install https://github.com/SebastianBocquet/yapoweremu`
+You can easily install it with `pip install git+https://github.com/SebastianBocquet/yapoweremu`
 
 ## Tutorial
 

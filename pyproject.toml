@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yapoweremu"
+version = "0.0.0"
+authors = [{name="Sebastian Bocquet", email="sebastian.bocquet@gmail.com"},]
+description = "yet another emulator for the linear matter power spectrum"
+readme = "README.md"
+requires-python = ">=3"
+dependencies = ['numpy', 'torch']
+classifiers = ["Programming Language :: Python :: 3",
+               "License :: OSI Approved :: MIT License",
+               "Operating System :: OS Independent",]
+
+[project.urls]
+Homepage = "https://github.com/SebastianBocquet/yapoweremu"
+Issues = "https://github.com/SebastianBocquet/yapoweremu/issues"
+
+[tool.setuptools]
+packages = ['yapoweremu']
+package-data = {'yapoweremu' = ['*.npy', '*.pt', '*.txt']}
