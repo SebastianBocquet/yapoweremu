@@ -67,7 +67,7 @@ class Emulator:
             assert name in param_dict, "param_dict must contain %s"%name
         # Check if the parameters that enter the NN are within the allowed range
         for name in self.param_names_nn:
-            assert np.all((param_dict[name] >= self.param_ranges[name][0]) & (param_dict[name] <= self.param_ranges[name][1])), "param_dict[%s] must be within the range %s"%(name, self.param_ranges[name])
+            assert np.all((param_dict[name] >= self.param_ranges[name][0]) & (param_dict[name] <= self.param_ranges[name][1])), "%s must be within the range %s"%(name, self.param_ranges[name])
         # Check if all parameters have the same shape
         all_shape = [np.shape(param_dict[name]) for name in self.param_names]
         assert len(set(all_shape)) == 1, "All parameters must have the same shape"
