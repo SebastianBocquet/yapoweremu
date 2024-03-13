@@ -18,9 +18,9 @@ You can easily install it with `pip install git+https://github.com/SebastianBocq
 ## Tutorial
 
 ```
-import poweremu
+import yapoweremu
 
-emu = poweremu.Emulator()
+emu = yapoweremu.Emulator()
 k = emu.k
 
 params = {'Omegam': .3, 'Omegab': .06, 'mnu': .1, 'h': .7, 'w': -1., 'z': 0., 'ln1e10As': 3., 'ns': .97}
